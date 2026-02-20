@@ -1,0 +1,12 @@
+# Fichiers de credentials Tampermonkey — ne jamais committer
+tampermonkey/*.credentials.js
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# AI
+.claude/
+.cursor/
