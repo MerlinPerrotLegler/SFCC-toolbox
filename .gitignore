@@ -10,3 +10,9 @@ Thumbs.db
 # AI
 .claude/
 .cursor/
+
+test-files/
+DWAPP-schema/abtest.xsd
+
+site-exports/*
+site-imports/*

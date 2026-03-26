@@ -5,6 +5,13 @@ import copy
 import fnmatch
 import shutil
 
+try:
+    import tty
+    import termios
+    _TTY_RAW = True
+except ImportError:
+    _TTY_RAW = False
+
 
 def parse_xml(fichier):
     """Parse XML, enregistre le namespace par défaut, retourne (tree, root, prefix)."""
@@ -73,7 +80,7 @@ def disable_all_jobs(fichier, rel):
         print(f"❌ Erreur : {rel} → {e}")
 
 
-def fix_url_aliases(fichier, rel):
+def rm_url_aliases(fichier, rel):
     """Remplace le fichier par un JSON vide {}."""
     try:
         with open(fichier, 'w', encoding='utf-8') as f:
@@ -137,36 +144,116 @@ def is_url_aliases_file(parts):
     return len(parts) >= 3 and parts[-1] == 'aliases' and parts[-2] == 'urls'
 
 
-def process_file(path, rel):
+OPTION_KEYS = [
+    'replace_dev_with_staging',
+    'disable_all_jobs',
+    'rm_allocation_timestamp_inventory_xml',
+    'rm_cache_settings_for_developement',
+    'rm_all_aliases',
+]
+
+
+def process_file(path, rel, options):
+    """Apply transformations according to enabled options."""
     parts = rel.split('/')
     basename = parts[-1]
     in_sites = 'sites' in parts[:-1]
     in_inventory = 'inventory-lists' in parts[:-1]
 
-    # 1. jobs.xml (n'importe où dans l'arborescence)
-    if basename == 'jobs.xml':
+    # 1. jobs.xml
+    if basename == 'jobs.xml' and options.get('disable_all_jobs'):
         disable_all_jobs(path, rel)
         return
 
-    # 2. sites/**/urls/aliases → JSON vide (fichier sans extension nommé 'aliases')
-    if is_url_aliases_file(parts):
-        fix_url_aliases(path, rel)
+    # 2. sites/**/urls/aliases
+    if is_url_aliases_file(parts) and options.get('rm_all_aliases'):
+        rm_url_aliases(path, rel)
         return
 
-    # 3. inventory-lists/inventory*.xml → supprime allocation-timestamp
-    if in_inventory and fnmatch.fnmatch(basename, 'inventory*.xml'):
+    # 3. inventory-lists/inventory*.xml
+    if in_inventory and fnmatch.fnmatch(basename, 'inventory*.xml') and options.get('rm_allocation_timestamp_inventory_xml'):
         rm_allocation_timestamp_inventory_xml(path, rel)
         return
 
-    # 4. sites/**/cache-settings.xml → désactive le cache développement
-    if in_sites and basename == 'cache-settings.xml':
+    # 4. sites/**/cache-settings.xml
+    if in_sites and basename == 'cache-settings.xml' and options.get('rm_cache_settings_for_developement'):
         rm_cache_settings_for_developement(path, rel)
         return
 
-    # 5. **/*.xml → remplace dev par staging (sauf dossiers exclus)
+    # 5. **/*.xml → replace dev by staging
     EXCLUDED_DIRS = {'custom-objects', 'pricebooks', 'customer-lists', 'libraries'}
-    if basename.endswith('.xml') and not EXCLUDED_DIRS.intersection(parts[:-1]):
+    if options.get('replace_dev_with_staging') and basename.endswith('.xml') and not EXCLUDED_DIRS.intersection(parts[:-1]):
         replace_dev_with_staging(path, rel)
+
+
+def get_key():
+    """Read a single key (works with arrows, space, enter). Returns key name or char."""
+    if _TTY_RAW and sys.stdin.isatty():
+        fd = sys.stdin.fileno()
+        old = termios.tcgetattr(fd)
+        try:
+            tty.setraw(fd)
+            ch = sys.stdin.read(1)
+            if ch == '\x1b':  # ESC
+                nxt = sys.stdin.read(2)
+                if nxt == '[A':
+                    return 'up'
+                if nxt == '[B':
+                    return 'down'
+            elif ch == ' ':
+                return 'space'
+            elif ch in ('\r', '\n'):
+                return 'enter'
+            return ch
+        finally:
+            termios.tcsetattr(fd, termios.TCSADRAIN, old)
+    else:
+        line = sys.stdin.readline().strip()
+        if line.lower() == 'enter' or line == '':
+            return 'enter'
+        if line == ' ':
+            return 'space'
+        if line in ('1', '2', '3', '4', '5'):
+            return line
+        return line or 'enter'
+
+
+def run_tty_menu():
+    """Show options menu; Space toggles selected, Up/Down move, Enter to run. Returns options dict."""
+    labels = {
+        'replace_dev_with_staging': 'a. replace_dev_with_staging',
+        'disable_all_jobs': 'b. disable_all_jobs',
+        'rm_allocation_timestamp_inventory_xml': 'c. rm_allocation_timestamp_inventory_xml',
+        'rm_cache_settings_for_developement': 'd. rm_cache_settings_for_developement',
+        'rm_all_aliases': 'e. rm_all_aliases',
+    }
+    options = {k: True for k in OPTION_KEYS}
+    selected = 0
+
+    while True:
+        os.system('clear' if os.name != 'nt' else 'cls')
+        print("Site Import STG → SB — Options (toggle with SPACE, ENTER to run)\n")
+        for i, key in enumerate(OPTION_KEYS):
+            mark = "[x]" if options[key] else "[ ]"
+            cursor = " ► " if i == selected else "   "
+            print(f"  {cursor} {mark} {labels[key]}")
+        print("\n  SPACE: toggle  ↑/↓: move  ENTER: run")
+        sys.stdout.flush()
+
+        key = get_key()
+        if key == 'enter':
+            break
+        if key == 'space':
+            options[OPTION_KEYS[selected]] = not options[OPTION_KEYS[selected]]
+        elif key == 'up':
+            selected = (selected - 1) % len(OPTION_KEYS)
+        elif key == 'down':
+            selected = (selected + 1) % len(OPTION_KEYS)
+        elif key in ('1', '2', '3', '4', '5'):
+            idx = int(key) - 1
+            options[OPTION_KEYS[idx]] = not options[OPTION_KEYS[idx]]
+
+    return options
 
 
 MACOS_TEMP_DIR = '__MACOSX'
@@ -199,12 +286,12 @@ def clean_temp_files(dossier):
             print(f"🗑️  [temp] supprimé : {rel}/")
 
 
-def parcourir_dossier(dossier):
+def parcourir_dossier(dossier, options):
     for racine, _, fichiers in os.walk(dossier):
         for fichier in fichiers:
             chemin = os.path.join(racine, fichier)
             rel = get_rel(chemin, dossier)
-            process_file(chemin, rel)
+            process_file(chemin, rel, options)
 
 
 if __name__ == "__main__":
@@ -212,13 +299,14 @@ if __name__ == "__main__":
         print("Usage : python script.py <dossier>")
         sys.exit(1)
 
-    dossier = sys.argv[1]
+    dossier = os.path.abspath(sys.argv[1])
 
     if not os.path.isdir(dossier):
         print(f"❌ '{dossier}' n'est pas un dossier valide.")
         sys.exit(1)
 
-    parcourir_dossier(dossier)
+    options = run_tty_menu()
+    parcourir_dossier(dossier, options)
     print()
     clean_temp_files(dossier)
     print("\nTerminé.")
