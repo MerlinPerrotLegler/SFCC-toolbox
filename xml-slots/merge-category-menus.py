@@ -5,7 +5,7 @@ import copy
 import re
 from collections import defaultdict
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List, Optional, Tuple
 from xml.etree import ElementTree as ET
 
 
@@ -32,23 +32,29 @@ def custom_attribute_dedupe_key(attr_el: ET.Element) -> str:
     return f"{attr_id}::{normalize_xml(serialized)}"
 
 
+def custom_attribute_identity_key(attr_el: ET.Element) -> str:
+    attr_id = attr_el.get("attribute-id", "")
+    xml_lang = attr_el.get("{http://www.w3.org/XML/1998/namespace}lang", "")
+    return f"{attr_id}::lang={xml_lang}"
+
+
 def merge_slot_group(
     ns_uri: str,
-    group_key: Tuple[str, str],
+    target_slot_id: str,
+    context_id: str,
     candidates: List[ET.Element],
     template_text: str,
 ) -> ET.Element:
-    # group_key = (context-id, configuration-id)
-    context_id, configuration_id = group_key
-
     rep = candidates[0]
     out = ET.Element(q(ns_uri, "slot-configuration"))
 
     # slot attributes
-    out.set("slot-id", "category-menu")
+    out.set("slot-id", target_slot_id)
     out.set("context", rep.get("context", "category"))
     out.set("context-id", context_id)
-    out.set("configuration-id", configuration_id)
+    # Keep one configuration-id (from the first element in document order).
+    if rep.get("configuration-id"):
+        out.set("configuration-id", rep.get("configuration-id"))
 
     # Merge common boolean-ish flags
     assigned_to_site_values = [c.get("assigned-to-site") for c in candidates if c.get("assigned-to-site") is not None]
@@ -98,22 +104,63 @@ def merge_slot_group(
     # Custom attributes: keep all custom-attribute elements found in merged slots.
     # (Commerce import généralement accepte les doublons, et ça colle à l'exigence "mettre toutes".)
     custom_attrs_out: List[ET.Element] = []
+    # Track distinct values per identity key (attribute-id + xml:lang).
+    # Identical values are deduped, differing values are kept and flagged.
+    attr_variants: Dict[str, Dict[str, List[str]]] = defaultdict(lambda: defaultdict(list))
+    attr_first_element: Dict[Tuple[str, str], ET.Element] = {}
     for c in candidates:
         ca_container = c.find(q(ns_uri, "custom-attributes"))
         if ca_container is None:
             continue
         for attr_el in ca_container.findall(q(ns_uri, "custom-attribute")):
-            custom_attrs_out.append(copy.deepcopy(attr_el))
+            identity_key = custom_attribute_identity_key(attr_el)
+            value_key = custom_attribute_dedupe_key(attr_el)
+            source_info = (
+                f"slot-id={c.get('slot-id','')}, "
+                f"context-id={c.get('context-id','')}, "
+                f"configuration-id={c.get('configuration-id','')}"
+            )
+            if value_key not in attr_variants[identity_key]:
+                attr_variants[identity_key][value_key] = []
+                attr_first_element[(identity_key, value_key)] = copy.deepcopy(attr_el)
+            attr_variants[identity_key][value_key].append(source_info)
+
+    conflict_comments: List[str] = []
+    for identity_key, variants in attr_variants.items():
+        # Keep exactly one element per unique value.
+        for value_key in variants:
+            custom_attrs_out.append(copy.deepcopy(attr_first_element[(identity_key, value_key)]))
+
+        if len(variants) > 1:
+            details = []
+            for idx, (value_key, sources) in enumerate(variants.items(), start=1):
+                details.append(
+                    f"variant#{idx} value-signature={value_key} sources=[{'; '.join(sources)}]"
+                )
+            conflict_line = f"CONFLICT custom-attribute {identity_key}: " + " | ".join(details)
+            conflict_comments.append(conflict_line)
+            print(f"WARNING {target_slot_id}/{context_id}: {conflict_line}")
 
     if custom_attrs_out:
         custom_attrs_el = ET.SubElement(out, q(ns_uri, "custom-attributes"))
+        for comment_text in conflict_comments:
+            custom_attrs_el.append(ET.Comment(f" MANUAL_REVIEW {comment_text} "))
         for attr_el in custom_attrs_out:
             custom_attrs_el.append(attr_el)
 
     return out
 
 
-def process_slot_file(input_path: Path, output_path: Path, template_text: str) -> None:
+def classify_slot(slot_id: str) -> Optional[Tuple[str, str]]:
+    # (target slot-id, forced template)
+    if slot_id == "category-menu-right" or slot_id.startswith("category-menu-right-"):
+        return ("category-menu-right", "slots/content/megaMenuNewTemplate.isml")
+    if slot_id == "collection-menu-items" or slot_id.startswith("collection-menu-item-"):
+        return ("collection-menu-items", "slots/content/megaMenuCollection.isml")
+    return None
+
+
+def process_slot_file(input_path: Path, output_path: Path) -> None:
     tree = ET.parse(input_path)
     root = tree.getroot()
     ns_uri = _ns_uri_from_tag(root.tag)
@@ -122,34 +169,38 @@ def process_slot_file(input_path: Path, output_path: Path, template_text: str) -
         ET.register_namespace("", ns_uri)
 
     # Gather candidates and groups
-    candidates_by_key: Dict[Tuple[str, str], List[ET.Element]] = defaultdict(list)
-    first_index_by_key: Dict[Tuple[str, str], int] = {}
-    is_candidate_cache: Dict[ET.Element, bool] = {}
+    candidates_by_key: Dict[Tuple[str, str, str], List[ET.Element]] = defaultdict(list)
+    merge_key_by_el: Dict[ET.Element, Tuple[str, str, str]] = {}
 
     children = list(root)
     for idx, el in enumerate(children):
         if el.tag != q(ns_uri, "slot-configuration"):
             continue
         slot_id = el.get("slot-id") or ""
-        is_candidate = slot_id == "category-menu" or slot_id.startswith("category-menu-")
-        is_candidate_cache[el] = is_candidate
-        if not is_candidate:
+        slot_rule = classify_slot(slot_id)
+        if slot_rule is None:
             continue
 
         context_id = el.get("context-id")
-        configuration_id = el.get("configuration-id")
-        if not context_id or not configuration_id:
-            raise ValueError(f"Candidate slot missing context-id/configuration-id: slot-id={slot_id}")
+        if not context_id:
+            raise ValueError(f"Candidate slot missing context-id: slot-id={slot_id}")
 
-        key = (context_id, configuration_id)
+        target_slot_id, template_text = slot_rule
+        key = (target_slot_id, template_text, context_id)
         candidates_by_key[key].append(el)
-        if key not in first_index_by_key:
-            first_index_by_key[key] = idx
+        merge_key_by_el[el] = key
 
     # Pre-build merged slots per group
-    merged_by_key: Dict[Tuple[str, str], ET.Element] = {}
+    merged_by_key: Dict[Tuple[str, str, str], ET.Element] = {}
     for key, candidates in candidates_by_key.items():
-        merged_by_key[key] = merge_slot_group(ns_uri, key, candidates, template_text=template_text)
+        target_slot_id, group_template_text, context_id = key
+        merged_by_key[key] = merge_slot_group(
+            ns_uri,
+            target_slot_id=target_slot_id,
+            context_id=context_id,
+            candidates=candidates,
+            template_text=group_template_text,
+        )
 
     # Rebuild children in original order:
     emitted = set()
@@ -158,11 +209,11 @@ def process_slot_file(input_path: Path, output_path: Path, template_text: str) -
         if el.tag != q(ns_uri, "slot-configuration"):
             new_children.append(el)
             continue
-        if not is_candidate_cache.get(el, False):
+        if el not in merge_key_by_el:
             new_children.append(el)
             continue
 
-        key = (el.get("context-id"), el.get("configuration-id"))
+        key = merge_key_by_el[el]
         assert key in merged_by_key
         if key in emitted:
             continue
@@ -182,7 +233,7 @@ def process_slot_file(input_path: Path, output_path: Path, template_text: str) -
     tree.write(output_path, encoding="UTF-8", xml_declaration=True)
 
 
-def run_batch(input_root: Path, output_root: Path, template_text: str) -> int:
+def run_batch(input_root: Path, output_root: Path) -> int:
     # Support both common names encountered in exports/imports.
     candidates = list(input_root.rglob("slot.xml")) + list(input_root.rglob("slots.xml"))
     # Remove duplicates while preserving discovery order.
@@ -202,7 +253,7 @@ def run_batch(input_root: Path, output_root: Path, template_text: str) -> int:
     for source_path in slot_files:
         relative_path = source_path.relative_to(input_root)
         destination_path = output_root / relative_path
-        process_slot_file(source_path, destination_path, template_text)
+        process_slot_file(source_path, destination_path)
         print(f"OK: {source_path} -> {destination_path}")
 
     print(f"Terminé: {len(slot_files)} fichier(s) traité(s).")
@@ -224,14 +275,9 @@ def main() -> int:
         "output_root",
         help="Répertoire racine de sortie.",
     )
-    parser.add_argument(
-        "--template",
-        default="slots/content/megaMenu.ism",
-        help="Template text to set on merged category-menu slots.",
-    )
     args = parser.parse_args()
 
-    return run_batch(Path(args.input_root), Path(args.output_root), args.template)
+    return run_batch(Path(args.input_root), Path(args.output_root))
 
 
 if __name__ == "__main__":
