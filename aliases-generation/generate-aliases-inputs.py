@@ -185,59 +185,66 @@ def group_locales_by_country(locales_list):
     return groups
 
 
-def build_aliases_json(brand_short, locales_list, format_str):
+def _normalize_hostname(hostname):
+    return hostname.rstrip("/")
+
+
+def _join_url(hostname, path):
+    hostname = _normalize_hostname(hostname)
+    return f"{hostname}{path}"
+
+
+def build_aliases_json(brand_short, zone, locales_list, format_str):
     hostname = build_hostname(format_str, brand_short)
-    # Keep only proper locales (lang_COUNTRY), skip bare language codes like "en", "fr"
-    locales_list = [loc for loc in locales_list if "_" in loc]
-    country_groups = group_locales_by_country(locales_list)
+    zone_upper = zone.upper()
+    entries = []
 
-    # Unique languages in order of first appearance
-    seen_langs = []
-    for locale in locales_list:
-        lang = locale.split("_")[0].lower() if "_" in locale else locale.lower()
-        if lang not in seen_langs:
-            seen_langs.append(lang)
+    # Convert locales to language codes preserving order and uniqueness.
+    langs = []
+    for token in locales_list:
+        lang = token.split("_", 1)[0].lower()
+        if lang and lang not in langs:
+            langs.append(lang)
 
-    job_hostnames = {"default": hostname}
-    if len(seen_langs) > 1:
-        for lang in seen_langs:
-            job_hostnames[lang] = hostname
-
-    entries = [
-        {
-            "entry-point-pipelines": ["Default-Start", "Home-Show"],
-            "entry-point-destination": ["host", "site-path"],
-        }
-    ]
-
-    for locale in locales_list:
-        if "_" in locale:
-            lang, country = locale.split("_", 1)
-        else:
-            lang, country = locale, locale
-        country_lower = country.lower()
-        lang_lower = lang.lower()
-
-        locales_for_country = country_groups[country_lower]
-        if len(locales_for_country) == 1:
-            site_path = country_lower
-        else:
-            site_path = f"{country_lower}/{lang_lower}"
-
+    if zone_upper == "EU":
+        # EU: one entry per language path (/fr/, /de/, ...)
+        for lang in langs:
+            path = f"/{lang}/"
+            entries.append(
+                {
+                    "brand": brand_short.lower(),
+                    "site": zone_upper,
+                    "locale": lang,
+                    "path": path,
+                    "url": _join_url(hostname, path),
+                }
+            )
+    elif zone_upper == "AA":
+        # AA: root path only.
+        path = "/"
         entries.append(
             {
-                "if-site-path": site_path,
-                "locale": locale,
-                "site-path-trailing-slash": "yes",
+                "brand": brand_short.lower(),
+                "site": zone_upper,
+                "locale": langs[0] if langs else "default",
+                "path": path,
+                "url": _join_url(hostname, path),
+            }
+        )
+    else:
+        # Country sites: one path based on site zone (/ca/, /us/, ...)
+        path = f"/{zone_upper.lower()}/"
+        entries.append(
+            {
+                "brand": brand_short.lower(),
+                "site": zone_upper,
+                "locale": langs[0] if langs else zone_upper.lower(),
+                "path": path,
+                "url": _join_url(hostname, path),
             }
         )
 
-    aliases = {
-        "__version": "1",
-        "settings": {"job-hostnames": job_hostnames},
-        hostname: entries,
-    }
-    return json.dumps(aliases, indent="\t", ensure_ascii=False)
+    return json.dumps(entries, indent=2, ensure_ascii=False)
 
 
 def main():
@@ -310,6 +317,7 @@ def main():
 
         content = build_aliases_json(
             brand_short=brand_short,
+            zone=zone,
             locales_list=locales_list,
             format_str=args.format_str,
         )

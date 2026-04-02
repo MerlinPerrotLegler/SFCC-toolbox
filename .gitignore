@@ -1,3 +1,4 @@
+node_modules/
 # Fichiers de credentials Tampermonkey — ne jamais committer
 tampermonkey/*.credentials.js
 

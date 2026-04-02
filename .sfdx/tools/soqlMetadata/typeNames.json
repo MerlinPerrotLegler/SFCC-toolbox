@@ -1,0 +1,3627 @@
+[
+  {
+    "name": "AIApplication",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AIApplicationConfig",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AIInsightAction",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AIInsightFeedback",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AIInsightReason",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AIInsightValue",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AIRecordInsight",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AcceptedEventRelation",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Account",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AccountContactRole",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AccountFieldMapping__c",
+    "custom": true,
+    "queryable": true
+  },
+  {
+    "name": "AccountPartner",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ActionLinkGroupTemplate",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ActionLinkTemplate",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ActiveFeatureLicenseMetric",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ActivePermSetLicenseMetric",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ActiveProfileMetric",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AdditionalNumber",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Address",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AddressFieldMapping__c",
+    "custom": true,
+    "queryable": true
+  },
+  {
+    "name": "Address__c",
+    "custom": true,
+    "queryable": true
+  },
+  {
+    "name": "AgentWork",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AggregateResult",
+    "custom": false,
+    "queryable": false
+  },
+  {
+    "name": "AiJobRun",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AlternativePaymentMethod",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AnalyticsUserAttrFuncTkn",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Announcement",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ApexClass",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ApexComponent",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ApexEmailNotification",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ApexLog",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ApexPage",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ApexPageInfo",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ApexTestQueueItem",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ApexTestResult",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ApexTestResultLimits",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ApexTestRunResult",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ApexTestSuite",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ApexTrigger",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ApexTypeImplementor",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AppAnalyticsQueryRequest",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AppDefinition",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AppMenuItem",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AppTabMember",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ApplicationSubtypeDefinition",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Approval",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ApprovalSubmission",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ApprovalSubmissionDetail",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ApprovalWorkItem",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Asset",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AssetRelationship",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AssignmentRule",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AssociatedLocation",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AsyncApexJob",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AsyncOperationLog",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AsyncOperationStatus",
+    "custom": false,
+    "queryable": false
+  },
+  {
+    "name": "AttachedContentDocument",
+    "custom": false,
+    "queryable": false
+  },
+  {
+    "name": "AttachedContentNote",
+    "custom": false,
+    "queryable": false
+  },
+  {
+    "name": "Attachment",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AuditTrailFileExport",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AuraDefinition",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AuraDefinitionBundle",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AuraDefinitionBundleInfo",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AuraDefinitionInfo",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AuthConfig",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AuthConfigProviders",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AuthProvParamFwdAllowlist",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AuthProvider",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AuthSession",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AuthorizationForm",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AuthorizationFormConsent",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AuthorizationFormDataUse",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "AuthorizationFormText",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "BackgroundOperation",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "BatchDataSource",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "BatchDataSrcFilterCriteria",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "BatchJob",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "BatchJobDefinition",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "BatchJobPart",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "BatchJobPartFailedRecord",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "BatchProcessJobDefView",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "BatchProcessJobDefinition",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "BrandTemplate",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "BrandingSet",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "BrandingSetProperty",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "BriefcaseAssignment",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "BriefcaseDefinition",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "BriefcaseRule",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "BriefcaseRuleFilter",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "BrowserPolicyViolation",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "BusProcessFeedbackConfig",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "BusinessBrand",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "BusinessHours",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "BusinessProcess",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "BusinessProcessTypeDef",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "BuyerGroup",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CalcMatrixColumnRange",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CalcProcStepRelationship",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CalculationMatrix",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CalculationMatrixActionLog",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CalculationMatrixColumn",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CalculationMatrixRow",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CalculationMatrixVersion",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CalculationProcedure",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CalculationProcedureStep",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CalculationProcedureVariable",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CalculationProcedureVersion",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Calendar",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CalendarView",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CallCenter",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CallCoachingMediaProvider",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Campaign",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CampaignMember",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CampaignMemberStatus",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CardPaymentMethod",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CartCheckoutSession",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CartDeliveryGroup",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CartDeliveryGroupMethod",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CartItem",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CartItemPriceAdjustment",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CartRelatedItem",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CartTax",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CartValidationOutput",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Case",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CaseComment",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CaseContactRole",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CaseFieldMapping__c",
+    "custom": true,
+    "queryable": true
+  },
+  {
+    "name": "CaseHistory2",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CaseSolution",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CaseStatus",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CaseSubjectParticle",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CaseTeamMember",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CaseTeamRole",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CaseTeamTemplate",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CaseTeamTemplateMember",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CaseTeamTemplateRecord",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CategoryData",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CategoryNode",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ChatterActivity",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ChatterExtension",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ChatterExtensionConfig",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ClientBrowser",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CollaborationGroup",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CollaborationGroupMember",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CollaborationGroupMemberRequest",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CollaborationGroupRecord",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CollaborationInvitation",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ColorDefinition",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CombinedAttachment",
+    "custom": false,
+    "queryable": false
+  },
+  {
+    "name": "CommSubscription",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CommSubscriptionChannelType",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CommSubscriptionConsent",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CommSubscriptionTiming",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Community",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ConferenceNumber",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ConnectedApplication",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Contact",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ContactFieldMapping__c",
+    "custom": true,
+    "queryable": true
+  },
+  {
+    "name": "ContactPointAddress",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ContactPointConsent",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ContactPointEmail",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ContactPointPhone",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ContactPointTypeConsent",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ContactRequest",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ContentAsset",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ContentBody",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ContentDistribution",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ContentDistributionView",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ContentDocument",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ContentDocumentLink",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ContentFolder",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ContentFolderItem",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ContentFolderMember",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ContentNote",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ContentTaxonomy",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ContentTaxonomyRelatedTerm",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ContentTaxonomyTerm",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ContentTaxonomyTermRelatedTerm",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ContentTaxonomyTermRelationshipType",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ContentVersion",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ContentVersionRenditionContent",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Contract",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ContractContactRole",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ContractStatus",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CorsWhitelistEntry",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Coupon",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CouponCodeRedemption",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CreditMemo",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CreditMemoInvApplication",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CreditMemoLine",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CronJobDetail",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CronTrigger",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CspTrustedSite",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CurrencyType",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CustomBrand",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CustomBrandAsset",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CustomHelpMenuItem",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CustomHelpMenuSection",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CustomHttpHeader",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CustomNotificationType",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CustomPermission",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "CustomPermissionDependency",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Customer",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Dashboard",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DashboardComponent",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DataAssessmentFieldMetric",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DataAssessmentMetric",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DataAssessmentValueMetric",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DataIntegrationRecordPurchasePermission",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DataStatistics",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DataType",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DataUseLegalBasis",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DataUsePurpose",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DataWeaveResource",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DatacloudAddress",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DatedConversionRate",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DecisionMatrixDefinition",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DecisionMatrixDefinitionVersion",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DecisionTable",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DecisionTableDatasetLink",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DecisionTableParameter",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DecisionTableSourceCriteria",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DecisionTblDatasetParameter",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DecisionTblFileImportData",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DeclinedEventRelation",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DeliveryEstimationSetup",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DevopsActivityLog",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DevopsEnvironment",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DevopsRequestInfo",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DigitalWallet",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Document",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DocumentAttachmentMap",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Domain",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DomainSite",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DuplicateRecordItem",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DuplicateRecordSet",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "DuplicateRule",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EmailCapture",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EmailDomainFilter",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EmailDomainKey",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EmailMessage",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EmailMessageRelation",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EmailRelay",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EmailRoutingAddress",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EmailServicesAddress",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EmailServicesFunction",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EmailStatus",
+    "custom": false,
+    "queryable": false
+  },
+  {
+    "name": "EmailTemplate",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EmbeddedServiceDetail",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EmbeddedServiceLabel",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EmpUserProvisionProcessErr",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EmpUserProvisioningProcess",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EngagementAttendee",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EngagementChannelType",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EngagementInteraction",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EngagementInterface",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EngagementTopic",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EngmtChannelTypeSettings",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EnhancedLetterhead",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EntityDefinition",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EntityParticle",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EntitySubscription",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Event",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EventBusSubscriber",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EventLogFile",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EventRelation",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EventRelayConfig",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EventRelayFeedback",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EventWhoRelation",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "EvfPipelineSubTaskDetails",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExplainabilityActionDef",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExplainabilityActionVersion",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExplainabilityMsgTemplate",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExpressionFilter",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExpressionFilterCriteria",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExpressionSet",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExpressionSetDefinition",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExpressionSetDefinitionVersion",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExpressionSetMessageToken",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExpressionSetObjectAlias",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExpressionSetVersion",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExpressionSetView",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExpsSetObjectAliasFieldVw",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExternalClientApplication",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExternalDataSource",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExternalDataSrcDescriptor",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExternalDataUserAuth",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExternalEventMapping",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExternalSocialAccount",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExtlClntAppAndroidPushConfig",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExtlClntAppApplePushConfig",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExtlClntAppMobPlcyConfig",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExtlClntAppMobileSettings",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExtlClntAppOauthConsumer",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExtlClntAppOauthIpRange",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExtlClntAppOauthPlcyAttr",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExtlClntAppOauthPlcyCnfg",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExtlClntAppOauthPlcyCustmScp",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExtlClntAppOauthSetAttr",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExtlClntAppOauthSetCustmScp",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExtlClntAppOauthSettings",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExtlClntAppPlcyCnfg",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExtlClntAppPushPolicyConfig",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExtlClntAppPushSettings",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExtlClntAppSamplePlcyCnfg",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ExtlClntAppSampleSettings",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FeedAttachment",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FeedComment",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FeedItem",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FeedLike",
+    "custom": false,
+    "queryable": false
+  },
+  {
+    "name": "FeedPollChoice",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FeedPollVote",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FeedRevision",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FeedSignal",
+    "custom": false,
+    "queryable": false
+  },
+  {
+    "name": "FeedTrackedChange",
+    "custom": false,
+    "queryable": false
+  },
+  {
+    "name": "FieldDefinition",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FieldPermissions",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FieldSecurityClassification",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FileSearchActivity",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FiscalYearSettings",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FlexQueueItem",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FlowDefinitionView",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FlowInterview",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FlowInterviewLog",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FlowInterviewLogEntry",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FlowOrchestration",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FlowOrchestrationInstance",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FlowOrchestrationLog",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FlowOrchestrationStageInstance",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FlowOrchestrationStepInstance",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FlowOrchestrationVersion",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FlowOrchestrationWorkItem",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FlowRecord",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FlowRecordElement",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FlowRecordElementOccurrence",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FlowRecordRelation",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FlowRecordVersion",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FlowRecordVersionOccurrence",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FlowStageRelation",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FlowTestResult",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FlowTestView",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FlowVariableView",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FlowVersionView",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Folder",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FolderedContentDocument",
+    "custom": false,
+    "queryable": false
+  },
+  {
+    "name": "ForecastingAdjustment",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ForecastingCategoryMapping",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ForecastingColumnDefinition",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ForecastingCustomData",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ForecastingDisplayedFamily",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ForecastingFact",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ForecastingFilter",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ForecastingFilterCondition",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ForecastingGroup",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ForecastingGroupItem",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ForecastingItem",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ForecastingOwnerAdjustment",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ForecastingQuota",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ForecastingSourceDefinition",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ForecastingType",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ForecastingTypeSource",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ForecastingTypeToCategory",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ForecastingUserPreference",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FormulaFunction",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FormulaFunctionAllowedType",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FormulaFunctionCategory",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FulfillmentOrder",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FulfillmentOrderItemAdjustment",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FulfillmentOrderItemTax",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "FulfillmentOrderLineItem",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "GlobalSFCCConfigurations__c",
+    "custom": true,
+    "queryable": true
+  },
+  {
+    "name": "GrantedByLicense",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Group",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "GroupMember",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "GtwyProvPaymentMethodType",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Holiday",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "IPAddressRange",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "IconDefinition",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Idea",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "IdeaComment",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "IdpEventLog",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "IframeWhiteListUrl",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Image",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Individual",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "InstalledMobileApp",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "IntegrationProviderAttr",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "IntegrationProviderDef",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "InventoryItemReservation",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "InventoryReservation",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Invoice",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "InvoiceLine",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "KnowledgeableUser",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Lead",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "LeadStatus",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "LicenseDefinitionCustomPermission",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "LightningExperienceTheme",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "LightningOnboardingConfig",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ListEmail",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ListEmailIndividualRecipient",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ListEmailRecipientSource",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ListEmailSentResult",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ListView",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ListViewChart",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ListViewChartInstance",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Location",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "LocationGroup",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "LocationGroupAssignment",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "LocationShippingCarrierMethod",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "LocationTrustMeasure",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "LoginGeo",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "LoginIp",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "LogoutEventStream",
+    "custom": false,
+    "queryable": false
+  },
+  {
+    "name": "LookedUpFromActivity",
+    "custom": false,
+    "queryable": false
+  },
+  {
+    "name": "MLModel",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "MLModelFactor",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "MLModelFactorComponent",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "MLModelMetric",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "MLPredictionDefinition",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "MLRecommendationDefinition",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Macro",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "MacroInstruction",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "MacroUsage",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "MailmergeTemplate",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ManagedContent",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ManagedContentChannel",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ManagedContentSpace",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ManagedContentVariant",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "MatchingInformation",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "MatchingRule",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "MatchingRuleItem",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "MlFeatureValueMetric",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "MobileApplicationDetail",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "MutingPermissionSet",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "MyDomainDiscoverableLogin",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Name",
+    "custom": false,
+    "queryable": false
+  },
+  {
+    "name": "NamedCredential",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Note",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "NoteAndAttachment",
+    "custom": false,
+    "queryable": false
+  },
+  {
+    "name": "OauthCustomScope",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OauthCustomScopeApp",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OauthToken",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OauthTokenExchHandlerApp",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OauthTokenExchangeHandler",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ObjectPermissions",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OmniRoutingEventStore",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OmniSupervisorConfig",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OmniSupervisorConfigAction",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OmniSupervisorConfigGroup",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OmniSupervisorConfigProfile",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OmniSupervisorConfigQueue",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OmniSupervisorConfigSkill",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OmniSupervisorConfigTab",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OmniSupervisorConfigUser",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OnboardingMetrics",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OpenActivity",
+    "custom": false,
+    "queryable": false
+  },
+  {
+    "name": "Opportunity",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OpportunityCompetitor",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OpportunityContactRole",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OpportunityLineItem",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OpportunityPartner",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OpportunityRelatedDeleteLog",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OpportunityStage",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Order",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OrderFieldMapping__c",
+    "custom": true,
+    "queryable": true
+  },
+  {
+    "name": "OrderItem",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OrderStatus",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Order_Line_Item__c",
+    "custom": true,
+    "queryable": true
+  },
+  {
+    "name": "OrgEmailAddressSecurity",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OrgLifecycleNotification",
+    "custom": false,
+    "queryable": false
+  },
+  {
+    "name": "OrgMetric",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OrgMetricScanSummary",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OrgWideEmailAddress",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Organization",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OutgoingEmail",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OutgoingEmailRelation",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "OwnedContentDocument",
+    "custom": false,
+    "queryable": false
+  },
+  {
+    "name": "OwnerChangeOptionInfo",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PackageLicense",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Partner",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PartnerRole",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PartyConsent",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Payment",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PaymentAuthAdjustment",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PaymentAuthorization",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PaymentCredit",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PaymentCreditLinePayment",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PaymentCreditTransaction",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PaymentGateway",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PaymentGatewayLog",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PaymentGatewayProvider",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PaymentGroup",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PaymentLineInvoice",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PaymentMethod",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Payment_Information__c",
+    "custom": true,
+    "queryable": true
+  },
+  {
+    "name": "PendingOrderSummary",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PendingServiceRouting",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PendingServiceRoutingInteractionInfo",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Period",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PermissionSet",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PermissionSetAssignment",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PermissionSetGroup",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PermissionSetGroupComponent",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PermissionSetLicense",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PermissionSetLicenseAssign",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PermissionSetLicenseDefinition",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PermissionSetTabSetting",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PicklistValueInfo",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PlatformAction",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PlatformCachePartition",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PlatformCachePartitionType",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PlatformEventUsageMetric",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PresenceConfigDeclineReason",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PresenceDeclineReason",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PresenceUserConfig",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PresenceUserConfigProfile",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PresenceUserConfigUser",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Pricebook2",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PricebookEntry",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ProcessDefinition",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ProcessException",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ProcessFlowMigration",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ProcessInstance",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ProcessInstanceNode",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ProcessInstanceStep",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ProcessInstanceWorkitem",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ProcessNode",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Product2",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ProductAttribute",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ProductAttributeSet",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ProductAttributeSetItem",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ProductAttributeSetProduct",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ProductCatalog",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ProductCategory",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ProductCategoryProduct",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Profile",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ProfileSkill",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ProfileSkillEndorsement",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ProfileSkillUser",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Promotion",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PromotionLineItemRule",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PromotionMarketSegment",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PromotionQualifier",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PromotionSegment",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PromotionSegmentBuyerGroup",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PromotionSegmentSalesStore",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PromotionTarget",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PromotionTier",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Prompt",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PromptAction",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PromptError",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PromptVersion",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Publisher",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "PushTopic",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "QueueRoutingConfig",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "QueueSobject",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "QuickText",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "QuickTextUsage",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Quick_text__c",
+    "custom": true,
+    "queryable": true
+  },
+  {
+    "name": "Quote",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "QuoteDocument",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "QuoteLineItem",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "QuoteTemplateRichTextData",
+    "custom": false,
+    "queryable": false
+  },
+  {
+    "name": "RX_Configurations_Addon__c",
+    "custom": true,
+    "queryable": true
+  },
+  {
+    "name": "RX_Configurations_Country__c",
+    "custom": true,
+    "queryable": true
+  },
+  {
+    "name": "RX_Configurations_Height__c",
+    "custom": true,
+    "queryable": true
+  },
+  {
+    "name": "RecAlrtDataSrcExpSetDef",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "RecentlyViewed",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Recommendation",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "RecommendationResponse",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "RecordAction",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "RecordActnSelItemExtrc",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "RecordAlert",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "RecordAlertActionableTarget",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "RecordAlertCategory",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "RecordAlertDataSource",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "RecordAlertTemplate",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "RecordType",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "RedirectWhitelistUrl",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Refund",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "RefundLinePayment",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "RelatedListColumnDefinition",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "RelatedListDefinition",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "RelationshipDomain",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "RelationshipInfo",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ReplyEmailSettings",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Report",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ReturnOrder",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ReturnOrderItemAdjustment",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ReturnOrderItemTax",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ReturnOrderLineItem",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Return_Line_Item__c",
+    "custom": true,
+    "queryable": true
+  },
+  {
+    "name": "Return__c",
+    "custom": true,
+    "queryable": true
+  },
+  {
+    "name": "SCC_LogLevels__c",
+    "custom": true,
+    "queryable": true
+  },
+  {
+    "name": "SFCCConfiguration__c",
+    "custom": true,
+    "queryable": true
+  },
+  {
+    "name": "SFCC_Integration_Creds__c",
+    "custom": true,
+    "queryable": true
+  },
+  {
+    "name": "SPSamlAttributes",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SalesStore",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SalesforceContract",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SalesforceInvoice",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SalesforcePayment",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SalesforceQuote",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SamlSsoConfig",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Scontrol",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Scorecard",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ScorecardAssociation",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ScorecardMetric",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SearchLayout",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SecurityCustomBaseline",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SecurityHealthCheckAlertRecipient",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SecurityHealthCheckResult",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Seller",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ServiceChannel",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ServiceChannelStatus",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ServicePresenceStatus",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ServiceResource",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ServiceSetupProvisioning",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SessionPermSetActivation",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SetupAssistantStep",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SetupAuditTrail",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SetupDataSynchronization",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SetupEntityAccess",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Shipment",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ShipmentItem",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Shipment__c",
+    "custom": true,
+    "queryable": true
+  },
+  {
+    "name": "ShippingCarrier",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ShippingCarrierMethod",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ShippingConfigurationSet",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ShippingRateArea",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ShippingRateGroup",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Site",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SiteDetail",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SiteIframeWhiteListUrl",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SiteRedirectMapping",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SlackChannelRelatedRecord",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SocialPersona",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SocialPost",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Solution",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SolutionStatus",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Stamp",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "StampAssignment",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "StandardShippingRate",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "StaticResource",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "StreamingChannel",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Survey",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SurveyEmailBranding",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SurveyEngagementContext",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SurveyInvitation",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SurveyPage",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SurveyQuestion",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SurveyQuestionChoice",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SurveyQuestionResponse",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SurveyQuestionScore",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SurveyResponse",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SurveyStyleSet",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SurveyStyleSetStaticRsrc",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SurveySubject",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SurveyVersion",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SurveyVersionAddlInfo",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "SvcProcProdCatgProdExtrc",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "TabDefinition",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "TableauHostMapping",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Task",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "TaskPriority",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "TaskRelation",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "TaskStatus",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "TaskWhoRelation",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "TenantUsageEntitlement",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "TestSuiteMembership",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "ThirdPartyAccountLink",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "TimelineObjectDefinition",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "TodayGoal",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Topic",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "TopicAssignment",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Translation",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UiFormulaCriterion",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UiFormulaRule",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UndecidedEventRelation",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UnstructuredStorageSpace",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "User",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserAppInfo",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserAppMenuCustomization",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserAppMenuItem",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserDefinedLabel",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserDefinedLabelAssignment",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserEmailPreferredPerson",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserEntityAccess",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserFieldAccess",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserLicense",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserListView",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserListViewCriterion",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserLocalWebServerIdentity",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserLogin",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserPackageLicense",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserPermissionAccess",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserPreference",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserProvAccount",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserProvAccountStaging",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserProvMockTarget",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserProvisioningConfig",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserProvisioningLog",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserProvisioningRequest",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserRecordAccess",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserRole",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserServicePresence",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserSetupEntityAccess",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "UserSharedFeature",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "VisualforceAccessMetrics",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "Vote",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "WebCart",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "WebCartAdjustmentBasis",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "WebCartAdjustmentGroup",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "WebCartCredit",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "WebLink",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "WebStore",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "WebStoreBuyerGroup",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "WebStoreCatalog",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "WebStoreInventorySource",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "WorkAccess",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "WorkBadge",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "WorkBadgeDefinition",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "WorkOrder",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "WorkOrderLineItem",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "WorkOrderLineItemStatus",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "WorkOrderStatus",
+    "custom": false,
+    "queryable": true
+  },
+  {
+    "name": "WorkThanks",
+    "custom": false,
+    "queryable": true
+  }
+]
