@@ -88,18 +88,8 @@ def merge_slot_group(
 
     content_el = ET.SubElement(out, q(ns_uri, "content"))
 
-    # Keep other content children from representative (rare for category-menu slots),
-    # but replace the content-assets list with merged assets.
-    rep_content = rep.find(q(ns_uri, "content"))
-    rep_other_children: List[ET.Element] = []
-    if rep_content is not None:
-        for child in list(rep_content):
-            if child.tag.endswith("content-assets"):
-                continue
-            rep_other_children.append(copy.deepcopy(child))
-    for child in rep_other_children:
-        content_el.append(child)
-
+    # slot.xsd defines <content> as a strict choice (products|categories|content-assets|html|recommended-products).
+    # For merged category-menu slots we force content-assets only, otherwise having e.g. products + content-assets is invalid.
     content_assets_el = ET.SubElement(content_el, q(ns_uri, "content-assets"))
     for content_id in merged_assets:
         asset = ET.SubElement(content_assets_el, q(ns_uri, "content-asset"))

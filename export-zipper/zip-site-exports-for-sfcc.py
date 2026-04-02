@@ -112,12 +112,19 @@ def validate_xml_files(exports_dir: Path, schema_dir: Path) -> tuple[int, int]:
 
 
 def zip_folder(source_folder: Path, output_zip: Path) -> None:
+    # Some generated exports can contain a duplicated root folder:
+    # <name>/<name>/... . SFCC expects only one level at archive root.
+    content_root = source_folder
+    children = [p for p in source_folder.iterdir() if p.is_dir()]
+    if len(children) == 1 and children[0].name == source_folder.name:
+        content_root = children[0]
+
     with zipfile.ZipFile(output_zip, "w", zipfile.ZIP_DEFLATED) as zf:
-        for file_path in source_folder.rglob("*"):
+        for file_path in content_root.rglob("*"):
             if not file_path.is_file():
                 continue
             # Include top-level folder in archive name (SFCC import-friendly)
-            arcname = source_folder.name + "/" + str(file_path.relative_to(source_folder))
+            arcname = source_folder.name + "/" + str(file_path.relative_to(content_root))
             zf.write(file_path, arcname=arcname)
 
 
