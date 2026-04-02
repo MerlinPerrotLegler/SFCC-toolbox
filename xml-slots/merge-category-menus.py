@@ -2,12 +2,10 @@
 
 import argparse
 import copy
-import os
 import re
-import sys
 from collections import defaultdict
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Dict, List, Tuple
 from xml.etree import ElementTree as ET
 
 
@@ -225,26 +223,16 @@ def main() -> int:
     parser = argparse.ArgumentParser(
         description=(
             "Merge SFCC slot-configurations for category menus. "
-            "Par défaut: scan inputs et écrit dans output en conservant les chemins."
+            "Scanne un dossier d'entrée et écrit dans un dossier de sortie en conservant les chemins."
         )
     )
     parser.add_argument(
-        "--input-root",
-        default="inputs",
-        help="Répertoire racine d'entrée à scanner (défaut: inputs).",
+        "input_root",
+        help="Répertoire racine d'entrée à scanner.",
     )
     parser.add_argument(
-        "--output-root",
-        default="output",
-        help="Répertoire racine de sortie (défaut: output).",
-    )
-    parser.add_argument(
-        "--input",
-        help="Mode fichier unique: chemin du XML source.",
-    )
-    parser.add_argument(
-        "--output",
-        help="Mode fichier unique: chemin du XML de sortie.",
+        "output_root",
+        help="Répertoire racine de sortie.",
     )
     parser.add_argument(
         "--template",
@@ -252,14 +240,6 @@ def main() -> int:
         help="Template text to set on merged category-menu slots.",
     )
     args = parser.parse_args()
-
-    # Backward-compatible single-file mode.
-    if args.input or args.output:
-        if not args.input or not args.output:
-            raise ValueError("En mode fichier unique, --input et --output sont tous les deux requis.")
-        process_slot_file(Path(args.input), Path(args.output), args.template)
-        print(f"OK: {args.input} -> {args.output}")
-        return 0
 
     return run_batch(Path(args.input_root), Path(args.output_root), args.template)
 

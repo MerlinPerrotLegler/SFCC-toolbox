@@ -1,0 +1,9 @@
+{
+  "name": "SFCC-toolbox",
+  "lockfileVersion": 2,
+  "requires": true,
+  "packages": {},
+  "scripts": {
+    "zip": "python3 export-zipper/zip-site-exports-for-sfcc.py"
+  }
+}
