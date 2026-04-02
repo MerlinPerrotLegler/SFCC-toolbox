@@ -15,5 +15,5 @@ Thumbs.db
 test-files/
 DWAPP-schema/abtest.xsd
 
-site-exports/*
-site-imports/*
+outputs/*
+inputs/*

@@ -1,12 +1,12 @@
 # generate-aliases-inputs.py
 
-Script to generate SFCC `aliases` files from a site-import folder.
+Script to generate SFCC `aliases` files from a input folder.
 
 ## What it does
 
 - Reads site data from `site.xml` and `preferences.xml` under an input folder.
 - Generates one file per `siteId` at:
-  - `./site-exports/alias-site-import/sites/{{siteId}}/urls/aliases`
+  - `./outputs/alias-input/sites/{{siteId}}/urls/aliases`
 - Builds JSON aliases content using:
   - `siteId`, `brandShort`, locales from `SiteLocales`
   - `--format` hostname template (must contain `{{brand}}`)
@@ -16,10 +16,10 @@ Script to generate SFCC `aliases` files from a site-import folder.
 - `--inputFolder <path>`
   - Optional.
   - Folder containing `sites`, or a parent folder that contains exactly one valid child with `sites`.
-  - If omitted, the script asks you to pick a folder in `./site-imports` (TTY selection).
+  - If omitted, the script asks you to pick a folder in `./inputs` (TTY selection).
 - `--outputFolder <path>`
   - Optional.
-  - Default: `./site-exports`
+  - Default: `./outputs`
 - `--format <string>`
   - Required.
   - Hostname template, for example: `{{brand}}-dev.bollebrands.com`
@@ -42,5 +42,5 @@ The script prints this summary once:
 ## Example
 
 ```bash
-python3 "generate-aliases-inputs.py" --inputFolder "../site-imports/dev-alaias-sitemaps-site-desc/" --outputFolder "../site-exports" --format "{{brand}}-dev.bollebrands.com"
+python3 "generate-aliases-inputs.py" --inputFolder "../inputs/dev-alaias-sitemaps-site-desc/" --outputFolder "../outputs" --format "{{brand}}-dev.bollebrands.com"
 ```

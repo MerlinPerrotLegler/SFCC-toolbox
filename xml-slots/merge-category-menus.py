@@ -2,9 +2,11 @@
 
 import argparse
 import copy
+import os
 import re
 import sys
 from collections import defaultdict
+from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 from xml.etree import ElementTree as ET
 
@@ -123,23 +125,8 @@ def merge_slot_group(
     return out
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser(
-        description=(
-            "Merge SFCC slot-configurations for category menus: "
-            "groupe category-menu-* into a single slot-id=category-menu by (context-id, configuration-id)."
-        )
-    )
-    parser.add_argument("input", help="Path of slot-configurations XML (input.xml)")
-    parser.add_argument("output", help="Path of output XML (output.xml)")
-    parser.add_argument(
-        "--template",
-        default="slots/content/megaMenu.ism",
-        help="Template text to set on merged category-menu slots.",
-    )
-    args = parser.parse_args()
-
-    tree = ET.parse(args.input)
+def process_slot_file(input_path: Path, output_path: Path, template_text: str) -> None:
+    tree = ET.parse(input_path)
     root = tree.getroot()
     ns_uri = _ns_uri_from_tag(root.tag)
     # Keep the namespace as the default one (no `ns0:` prefix) to match typical SFCC exports.
@@ -174,7 +161,7 @@ def main() -> int:
     # Pre-build merged slots per group
     merged_by_key: Dict[Tuple[str, str], ET.Element] = {}
     for key, candidates in candidates_by_key.items():
-        merged_by_key[key] = merge_slot_group(ns_uri, key, candidates, template_text=args.template)
+        merged_by_key[key] = merge_slot_group(ns_uri, key, candidates, template_text=template_text)
 
     # Rebuild children in original order:
     emitted = set()
@@ -203,8 +190,78 @@ def main() -> int:
     except Exception:
         pass
 
-    tree.write(args.output, encoding="UTF-8", xml_declaration=True)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    tree.write(output_path, encoding="UTF-8", xml_declaration=True)
+
+
+def run_batch(input_root: Path, output_root: Path, template_text: str) -> int:
+    # Support both common names encountered in exports/imports.
+    candidates = list(input_root.rglob("slot.xml")) + list(input_root.rglob("slots.xml"))
+    # Remove duplicates while preserving discovery order.
+    seen = set()
+    slot_files: List[Path] = []
+    for path in candidates:
+        resolved = path.resolve()
+        if resolved in seen:
+            continue
+        seen.add(resolved)
+        slot_files.append(path)
+
+    if not slot_files:
+        print(f"Aucun fichier slot.xml/slots.xml trouvé dans {input_root}")
+        return 1
+
+    for source_path in slot_files:
+        relative_path = source_path.relative_to(input_root)
+        destination_path = output_root / relative_path
+        process_slot_file(source_path, destination_path, template_text)
+        print(f"OK: {source_path} -> {destination_path}")
+
+    print(f"Terminé: {len(slot_files)} fichier(s) traité(s).")
     return 0
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        description=(
+            "Merge SFCC slot-configurations for category menus. "
+            "Par défaut: scan inputs et écrit dans output en conservant les chemins."
+        )
+    )
+    parser.add_argument(
+        "--input-root",
+        default="inputs",
+        help="Répertoire racine d'entrée à scanner (défaut: inputs).",
+    )
+    parser.add_argument(
+        "--output-root",
+        default="output",
+        help="Répertoire racine de sortie (défaut: output).",
+    )
+    parser.add_argument(
+        "--input",
+        help="Mode fichier unique: chemin du XML source.",
+    )
+    parser.add_argument(
+        "--output",
+        help="Mode fichier unique: chemin du XML de sortie.",
+    )
+    parser.add_argument(
+        "--template",
+        default="slots/content/megaMenu.ism",
+        help="Template text to set on merged category-menu slots.",
+    )
+    args = parser.parse_args()
+
+    # Backward-compatible single-file mode.
+    if args.input or args.output:
+        if not args.input or not args.output:
+            raise ValueError("En mode fichier unique, --input et --output sont tous les deux requis.")
+        process_slot_file(Path(args.input), Path(args.output), args.template)
+        print(f"OK: {args.input} -> {args.output}")
+        return 0
+
+    return run_batch(Path(args.input_root), Path(args.output_root), args.template)
 
 
 if __name__ == "__main__":

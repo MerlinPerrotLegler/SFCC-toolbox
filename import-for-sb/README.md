@@ -4,7 +4,7 @@ Scripts de traitement des exports de site SFCC pour préparer leur import sur un
 
 ## Scripts disponibles
 
-### `site-import-STG-to-SB.py`
+### `input-STG-to-SB.py`
 
 Transforme le contenu d'un dossier d'export de site SFCC pour le rendre compatible avec un environnement sandbox. Il parcourt récursivement tous les fichiers et applique les transformations suivantes :
 
@@ -25,13 +25,13 @@ Transforme le contenu d'un dossier d'export de site SFCC pour le rendre compatib
 2. Exécuter le script en passant ce dossier en argument :
 
 ```bash
-python site-import-STG-to-SB.py <chemin_vers_le_dossier>
+python input-STG-to-SB.py <chemin_vers_le_dossier>
 ```
 
 **Exemple :**
 
 ```bash
-python site-import-STG-to-SB.py ~/Downloads/site-export
+python input-STG-to-SB.py ~/Downloads/site-export
 ```
 
 3. Re-zipper le dossier traité et l'importer via le Business Manager.

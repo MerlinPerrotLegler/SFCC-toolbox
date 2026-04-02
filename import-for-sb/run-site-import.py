@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Site Import runner: select zip or folder → unzip if needed → run site-import-STG-to-SB.py
+Site Import runner: select zip or folder → unzip if needed → run input-STG-to-SB.py
 → pause with path → zip result as <name>-for-SB.zip
 """
 import os
@@ -20,7 +20,7 @@ except ImportError:
 
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-IMPORT_SCRIPT = os.path.join(SCRIPT_DIR, "site-import-STG-to-SB.py")
+IMPORT_SCRIPT = os.path.join(SCRIPT_DIR, "input-STG-to-SB.py")
 
 
 def get_base_name(path):
@@ -151,7 +151,7 @@ def select_path():
 
 def unzip_to_temp(zip_path):
     """Unzip to a temp directory. Returns (temp_dir_path, should_cleanup)."""
-    temp_dir = tempfile.mkdtemp(prefix="site-import-")
+    temp_dir = tempfile.mkdtemp(prefix="input-")
     with zipfile.ZipFile(zip_path, "r") as zf:
         zf.extractall(temp_dir)
     return temp_dir, True
@@ -168,7 +168,7 @@ def get_site_folder(extracted_root):
 
 
 def run_import_script(site_folder):
-    """Run site-import-STG-to-SB.py on site_folder (same process so TTY works)."""
+    """Run input-STG-to-SB.py on site_folder (same process so TTY works)."""
     # Run in same Python so TTY menu works in this terminal
     result = subprocess.run(
         [sys.executable, IMPORT_SCRIPT, site_folder],
@@ -203,7 +203,7 @@ def main():
         cleanup = False
 
     site_folder = os.path.abspath(site_folder)
-    print(f"\nRunning site-import on: {site_folder}\n")
+    print(f"\nRunning input on: {site_folder}\n")
     run_import_script(site_folder)
 
     print("\n" + "=" * 60)

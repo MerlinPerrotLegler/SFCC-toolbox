@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Zip all folders in site-exports for SFCC import.
+Zip all folders in output for SFCC import.
 
 Rules:
 - Never remove source folders.
-- On each execution, remove all .zip files from site-exports first.
+- On each execution, remove all .zip files from output first.
 - Validate XML files with DWAPP-schema when possible.
 """
 
@@ -17,7 +17,7 @@ import xml.etree.ElementTree as ET
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_EXPORTS_DIR = REPO_ROOT / "site-exports"
+DEFAULT_EXPORTS_DIR = REPO_ROOT / "outputs"
 DEFAULT_SCHEMA_DIR = REPO_ROOT / "DWAPP-schema"
 
 
@@ -134,12 +134,12 @@ def zip_all_top_level_folders(exports_dir: Path) -> int:
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Zip all site-exports folders for SFCC import."
+        description="Zip all output folders for SFCC import."
     )
     parser.add_argument(
         "--exportsDir",
         default=str(DEFAULT_EXPORTS_DIR),
-        help="Folder containing export folders to zip (default: ./site-exports).",
+        help="Folder containing export folders to zip (default: ./outputs).",
     )
     parser.add_argument(
         "--schemaDir",

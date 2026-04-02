@@ -8,8 +8,8 @@ import xml.etree.ElementTree as ET
 
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-DEFAULT_SITE_IMPORTS = os.path.join(REPO_ROOT, "site-imports")
-DEFAULT_OUTPUT_FOLDER = os.path.join(REPO_ROOT, "site-exports")
+DEFAULT_SITE_IMPORTS = os.path.join(REPO_ROOT, "inputs")
+DEFAULT_OUTPUT_FOLDER = os.path.join(REPO_ROOT, "outputs")
 
 
 def get_ns_prefix(root):
@@ -73,7 +73,7 @@ def tty_select_folder(site_imports_root):
     if not candidates:
         raise RuntimeError(f"No valid input folder found in: {site_imports_root}")
 
-    print("Select an input folder from site-imports:\n")
+    print("Select an input folder from inputs:\n")
     for idx, folder in enumerate(candidates, start=1):
         rel = os.path.relpath(folder, REPO_ROOT)
         print(f"{idx:>2}. {rel}")
@@ -249,19 +249,19 @@ def build_aliases_json(brand_short, zone, locales_list, format_str):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Generate aliases text inputs from a site-import folder."
+        description="Generate aliases text inputs from a input folder."
     )
     parser.add_argument(
         "--inputFolder",
         dest="input_folder",
         default=None,
-        help="Input folder containing a 'sites' directory. Default: TTY selection in ./site-imports",
+        help="Input folder containing a 'sites' directory. Default: TTY selection in ./inputs",
     )
     parser.add_argument(
         "--outputFolder",
         dest="output_folder",
         default=DEFAULT_OUTPUT_FOLDER,
-        help="Output folder where the generated text file will be written. Default: ./site-exports",
+        help="Output folder where the generated text file will be written. Default: ./outputs",
     )
     parser.add_argument(
         "--format",
@@ -323,7 +323,7 @@ def main():
         )
 
         aliases_file = os.path.join(
-            output_folder, "alias-site-import", "sites", site_id, "urls", "aliases"
+            output_folder, "alias-input", "sites", site_id, "urls", "aliases"
         )
         os.makedirs(os.path.dirname(aliases_file), exist_ok=True)
         with open(aliases_file, "w", encoding="utf-8") as f:
