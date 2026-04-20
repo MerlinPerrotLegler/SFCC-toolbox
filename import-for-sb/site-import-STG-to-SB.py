@@ -4,6 +4,7 @@ import sys
 import copy
 import fnmatch
 import shutil
+import re
 
 try:
     import tty
@@ -137,6 +138,76 @@ def rm_cache_settings_for_developement(fichier, rel):
         print(f"❌ Erreur de parsing : {rel} → {e}")
 
 
+EXTERNAL_LOCATION_HTTP_FALLBACK = (
+    'http://safety-staging.bollebrands.com/dw/image/v2/BFJW_STG/on/demandware.static/-/Sites-{catalog_id}/default/'
+)
+EXTERNAL_LOCATION_HTTPS_FALLBACK = (
+    'https://safety-staging.bollebrands.com/dw/image/v2/BFJW_STG/on/demandware.static/-/Sites-{catalog_id}/default/'
+)
+
+
+def _build_external_url(existing_url, catalog_id, fallback_template):
+    """Replace Sites-<catalog-id> in existing URL, or build a fallback URL."""
+    if existing_url:
+        pattern = re.compile(r'^(https?://.*/Sites-)([^/]+)(/.*)$')
+        match = pattern.match(existing_url.strip())
+        if match:
+            return f'{match.group(1)}{catalog_id}{match.group(3)}'
+    return fallback_template.format(catalog_id=catalog_id)
+
+
+def configure_master_catalog_external_location(fichier, rel):
+    """
+    Configure <external-location> urls in master catalog header.
+    Uses current catalog-id in Sites-<catalog-id> URL segment.
+    """
+    try:
+        tree, root, prefix = parse_xml(fichier)
+
+        if root.tag != f'{prefix}catalog':
+            return
+
+        catalog_id = (root.attrib.get('catalog-id') or '').strip()
+        if not catalog_id or 'master-catalog' not in catalog_id:
+            print(f"⏭️  [catalog] ignoré (pas un master catalog) : {rel}")
+            return
+
+        header = root.find(f'{prefix}header')
+        if header is None:
+            print(f"⏭️  [catalog] ignoré (header introuvable) : {rel}")
+            return
+
+        image_settings = header.find(f'{prefix}image-settings')
+        if image_settings is None:
+            image_settings = ET.SubElement(header, f'{prefix}image-settings')
+
+        external_location = image_settings.find(f'{prefix}external-location')
+        if external_location is None:
+            external_location = ET.SubElement(image_settings, f'{prefix}external-location')
+
+        http_url = external_location.find(f'{prefix}http-url')
+        if http_url is None:
+            http_url = ET.SubElement(external_location, f'{prefix}http-url')
+
+        https_url = external_location.find(f'{prefix}https-url')
+        if https_url is None:
+            https_url = ET.SubElement(external_location, f'{prefix}https-url')
+
+        new_http = _build_external_url(http_url.text, catalog_id, EXTERNAL_LOCATION_HTTP_FALLBACK)
+        new_https = _build_external_url(https_url.text, catalog_id, EXTERNAL_LOCATION_HTTPS_FALLBACK)
+
+        if http_url.text == new_http and https_url.text == new_https:
+            print(f"⏭️  [catalog] external-location déjà conforme : {rel}")
+            return
+
+        http_url.text = new_http
+        https_url.text = new_https
+        tree.write(fichier, encoding="unicode", xml_declaration=True)
+        print(f"✅ [catalog] external-location configuré : {rel}")
+    except ET.ParseError as e:
+        print(f"❌ Erreur de parsing : {rel} → {e}")
+
+
 # --- Routing ---
 
 def is_url_aliases_file(parts):
@@ -150,6 +221,7 @@ OPTION_KEYS = [
     'rm_allocation_timestamp_inventory_xml',
     'rm_cache_settings_for_developement',
     'rm_all_aliases',
+    'configure_master_catalog_external_location',
 ]
 
 
@@ -159,6 +231,7 @@ def process_file(path, rel, options):
     basename = parts[-1]
     in_sites = 'sites' in parts[:-1]
     in_inventory = 'inventory-lists' in parts[:-1]
+    in_catalogs = 'catalogs' in parts[:-1]
 
     # 1. jobs.xml
     if basename == 'jobs.xml' and options.get('disable_all_jobs'):
@@ -180,7 +253,12 @@ def process_file(path, rel, options):
         rm_cache_settings_for_developement(path, rel)
         return
 
-    # 5. **/*.xml → replace dev by staging
+    # 5. catalogs/**/catalog.xml → configure external-location for master catalog
+    if in_catalogs and basename == 'catalog.xml' and options.get('configure_master_catalog_external_location'):
+        configure_master_catalog_external_location(path, rel)
+        return
+
+    # 6. **/*.xml → replace dev by staging
     EXCLUDED_DIRS = {'custom-objects', 'pricebooks', 'customer-lists', 'libraries'}
     if options.get('replace_dev_with_staging') and basename.endswith('.xml') and not EXCLUDED_DIRS.intersection(parts[:-1]):
         replace_dev_with_staging(path, rel)
@@ -213,7 +291,7 @@ def get_key():
             return 'enter'
         if line == ' ':
             return 'space'
-        if line in ('1', '2', '3', '4', '5'):
+        if line in ('1', '2', '3', '4', '5', '6'):
             return line
         return line or 'enter'
 
@@ -226,6 +304,7 @@ def run_tty_menu():
         'rm_allocation_timestamp_inventory_xml': 'c. rm_allocation_timestamp_inventory_xml',
         'rm_cache_settings_for_developement': 'd. rm_cache_settings_for_developement',
         'rm_all_aliases': 'e. rm_all_aliases',
+        'configure_master_catalog_external_location': 'f. configure_master_catalog_external_location',
     }
     options = {k: True for k in OPTION_KEYS}
     selected = 0
@@ -249,7 +328,7 @@ def run_tty_menu():
             selected = (selected - 1) % len(OPTION_KEYS)
         elif key == 'down':
             selected = (selected + 1) % len(OPTION_KEYS)
-        elif key in ('1', '2', '3', '4', '5'):
+        elif key in ('1', '2', '3', '4', '5', '6'):
             idx = int(key) - 1
             options[OPTION_KEYS[idx]] = not options[OPTION_KEYS[idx]]
 

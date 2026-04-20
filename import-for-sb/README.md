@@ -15,6 +15,7 @@ Transforme le contenu d'un dossier d'export de site SFCC pour le rendre compatib
 | Réinitialisation des alias URL | `sites/**/urls/aliases` | Remplacé par `{}` |
 | Suppression des timestamps d'inventaire | `inventory-lists/inventory*.xml` | Supprime les balises `<allocation-timestamp>` |
 | Désactivation du cache | `sites/**/cache-settings.xml` | `static-cache-ttl=0` et `page-cache-enabled=false` sous `<development>` |
+| External location du master catalog | `catalogs/**/catalog.xml` | Configure `<header><image-settings><external-location>` avec `Sites-<catalog-id>` |
 | Nettoyage des fichiers temporaires | `._*`, `__MACOSX/`, `Thumbs.db`… | Supprime les artefacts macOS et Windows |
 
 **Dossiers exclus** de la transformation staging → development : `custom-objects`, `pricebooks`, `customer-lists`, `libraries`.

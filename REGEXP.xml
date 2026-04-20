@@ -1,0 +1,5 @@
+(?s)<slot-configuration slot-id="(header-banner-m|cart-promo-m|cart-recommendations-m|cts-recommendations-m|category-promo|product-recommendations-1-m|product-recommendations-2-m|noresult-recommendations)".*?</slot-configuration>\n+
+
+(?s)<slot-configuration slot-id="(header-banner-m|cart-promo-m|cart-recommendations-m|cts-recommendations-m|category-promo|product-recommendations-1-m|product-recommendations-2-m|noresult-recommendations)".*?</slot-configuration>\n+
+
+(?s)<slot-configuration-campaign-assignment slot-id="(header-banner-m|cart-promo-m|cart-recommendations-m|cts-recommendations-m|category-promo|product-recommendations-1-m|product-recommendations-2-m|noresult-recommendations)".*?/>\n+
