@@ -184,17 +184,22 @@ def get_output_folder(selected_path, is_zip):
     """Build destination folder in #OUTPUTS while preserving relative layout from #INPUTS when possible."""
     os.makedirs(OUTPUT_ROOT, exist_ok=True)
 
+    def with_to_sb_suffix(path):
+        if path.endswith("-to-SB"):
+            return path
+        return path + "-to-SB"
+
     if is_zip:
         if is_within(selected_path, INPUTS_ROOT):
             rel_zip = os.path.relpath(selected_path, INPUTS_ROOT)
             rel_no_ext = os.path.splitext(rel_zip)[0]
-            return os.path.join(OUTPUT_ROOT, rel_no_ext)
-        return os.path.join(OUTPUT_ROOT, get_base_name(selected_path))
+            return with_to_sb_suffix(os.path.join(OUTPUT_ROOT, rel_no_ext))
+        return with_to_sb_suffix(os.path.join(OUTPUT_ROOT, get_base_name(selected_path)))
 
     if is_within(selected_path, INPUTS_ROOT):
         rel = os.path.relpath(selected_path, INPUTS_ROOT)
-        return os.path.join(OUTPUT_ROOT, rel)
-    return os.path.join(OUTPUT_ROOT, os.path.basename(os.path.normpath(selected_path)))
+        return with_to_sb_suffix(os.path.join(OUTPUT_ROOT, rel))
+    return with_to_sb_suffix(os.path.join(OUTPUT_ROOT, os.path.basename(os.path.normpath(selected_path))))
 
 
 def zip_folder(source_folder, output_zip_path):

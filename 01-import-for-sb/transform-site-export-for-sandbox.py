@@ -138,6 +138,35 @@ def rm_cache_settings_for_developement(fichier, rel):
         print(f"❌ Erreur de parsing : {rel} → {e}")
 
 
+def add_dev_wizard_custom_cartridge(fichier, rel):
+    """In sites/**/site.xml add dev_wizard: at beginning of <custom-cartridges>."""
+    try:
+        tree, root, prefix = parse_xml(fichier)
+        custom_cartridges = root.find(f'.//{prefix}custom-cartridges')
+        if custom_cartridges is None:
+            print(f"⏭️  [site] custom-cartridges introuvable : {rel}")
+            return
+
+        current = (custom_cartridges.text or '').strip()
+        if not current:
+            custom_cartridges.text = 'dev_wizard'
+            tree.write(fichier, encoding="unicode", xml_declaration=True)
+            print(f"✅ [site] dev_wizard ajouté : {rel}")
+            return
+
+        parts = [p.strip() for p in current.split(':') if p.strip()]
+        if parts and parts[0] == 'dev_wizard':
+            print(f"⏭️  [site] dev_wizard déjà en tête : {rel}")
+            return
+
+        parts = [p for p in parts if p != 'dev_wizard']
+        custom_cartridges.text = 'dev_wizard:' + ':'.join(parts)
+        tree.write(fichier, encoding="unicode", xml_declaration=True)
+        print(f"✅ [site] dev_wizard préfixé : {rel}")
+    except ET.ParseError as e:
+        print(f"❌ Erreur de parsing : {rel} → {e}")
+
+
 EXTERNAL_LOCATION_HTTP_FALLBACK = (
     'http://safety-staging.bollebrands.com/dw/image/v2/BFJW_STG/on/demandware.static/-/Sites-{catalog_id}/default/'
 )
@@ -239,6 +268,7 @@ OPTION_KEYS = [
     'rm_cache_settings_for_developement',
     'rm_all_aliases',
     'configure_master_catalog_external_location',
+    'prefix_dev_wizard_custom_cartridge',
 ]
 
 
@@ -275,7 +305,12 @@ def process_file(path, rel, options):
         configure_master_catalog_external_location(path, rel)
         return
 
-    # 6. **/*.xml → replace dev by staging
+    # 6. sites/**/site.xml → prefix dev_wizard in custom-cartridges
+    if in_sites and basename == 'site.xml' and options.get('prefix_dev_wizard_custom_cartridge'):
+        add_dev_wizard_custom_cartridge(path, rel)
+        return
+
+    # 7. **/*.xml → replace dev by staging
     EXCLUDED_DIRS = {'custom-objects', 'pricebooks', 'customer-lists', 'libraries'}
     if options.get('replace_dev_with_staging') and basename.endswith('.xml') and not EXCLUDED_DIRS.intersection(parts[:-1]):
         replace_dev_with_staging(path, rel)
@@ -308,7 +343,7 @@ def get_key():
             return 'enter'
         if line == ' ':
             return 'space'
-        if line in ('1', '2', '3', '4', '5', '6'):
+        if line in ('1', '2', '3', '4', '5', '6', '7'):
             return line
         return line or 'enter'
 
@@ -322,6 +357,7 @@ def run_tty_menu():
         'rm_cache_settings_for_developement': 'd. rm_cache_settings_for_developement',
         'rm_all_aliases': 'e. rm_all_aliases',
         'configure_master_catalog_external_location': 'f. configure_master_catalog_external_location',
+        'prefix_dev_wizard_custom_cartridge': 'g. prefix_dev_wizard_custom_cartridge',
     }
     options = {k: True for k in OPTION_KEYS}
     selected = 0
@@ -345,7 +381,7 @@ def run_tty_menu():
             selected = (selected - 1) % len(OPTION_KEYS)
         elif key == 'down':
             selected = (selected + 1) % len(OPTION_KEYS)
-        elif key in ('1', '2', '3', '4', '5', '6'):
+        elif key in ('1', '2', '3', '4', '5', '6', '7'):
             idx = int(key) - 1
             options[OPTION_KEYS[idx]] = not options[OPTION_KEYS[idx]]
 
