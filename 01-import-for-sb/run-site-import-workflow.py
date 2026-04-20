@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
 Site Import runner:
-- select zip or folder in TTY browser (starts in inputs/)
-- copy source to output/ keeping relative structure
-- run site-import-STG-to-SB.py on copied output folder
+- select zip or folder in TTY browser (starts in #INPUTS/)
+- copy source to #OUTPUTS/ keeping relative structure
+- run transform-site-export-for-sandbox.py on copied output folder
 - zip result as <name>-for-SB.zip
 """
 import os
@@ -18,9 +18,9 @@ import termios
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
-INPUTS_ROOT = os.path.join(PROJECT_ROOT, "inputs")
-OUTPUT_ROOT = os.path.join(PROJECT_ROOT, "outputs")
-IMPORT_SCRIPT = os.path.join(SCRIPT_DIR, "site-import-STG-to-SB.py")
+INPUTS_ROOT = os.path.join(PROJECT_ROOT, "#INPUTS")
+OUTPUT_ROOT = os.path.join(PROJECT_ROOT, "#OUTPUTS")
+IMPORT_SCRIPT = os.path.join(SCRIPT_DIR, "transform-site-export-for-sandbox.py")
 
 
 def get_base_name(path):
@@ -134,7 +134,7 @@ def select_path_tty(start_dir):
 
 
 def select_path():
-    """Select source path via TTY browser, starting in inputs."""
+    """Select source path via TTY browser, starting in #INPUTS."""
     if not sys.stdin.isatty():
         print("TTY requis pour la sélection interactive.")
         sys.exit(1)
@@ -162,7 +162,7 @@ def get_site_folder(extracted_root):
 
 
 def run_import_script(site_folder):
-    """Run input-STG-to-SB.py on site_folder (same process so TTY works)."""
+    """Run transform script on site_folder (same process so TTY works)."""
     # Run in same Python so TTY menu works in this terminal
     result = subprocess.run(
         [sys.executable, IMPORT_SCRIPT, site_folder],
@@ -181,7 +181,7 @@ def is_within(path, root):
 
 
 def get_output_folder(selected_path, is_zip):
-    """Build destination folder in outputs while preserving relative layout from inputs when possible."""
+    """Build destination folder in #OUTPUTS while preserving relative layout from #INPUTS when possible."""
     os.makedirs(OUTPUT_ROOT, exist_ok=True)
 
     if is_zip:

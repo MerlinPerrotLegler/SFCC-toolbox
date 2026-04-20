@@ -15,5 +15,5 @@ Thumbs.db
 test-files/
 DWAPP-schema/abtest.xsd
 
-\#OUTPUTS/
-\#INPUTS/
+\#OUTPUTS/*
+\#INPUTS/*

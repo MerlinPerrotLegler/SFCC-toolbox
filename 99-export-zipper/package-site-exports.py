@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Zip all folders in output for SFCC import.
+Zip all folders in #OUTPUTS for SFCC import.
 
 Rules:
 - Never remove source folders.
-- On each execution, remove all .zip files from output first.
+- On each execution, remove all .zip files from #OUTPUTS first.
 - Validate XML files with DWAPP-schema when possible.
 """
 
@@ -17,7 +17,7 @@ import xml.etree.ElementTree as ET
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_EXPORTS_DIR = REPO_ROOT / "outputs"
+DEFAULT_EXPORTS_DIR = REPO_ROOT / "#OUTPUTS"
 DEFAULT_SCHEMA_DIR = REPO_ROOT / "DWAPP-schema"
 
 
@@ -41,7 +41,24 @@ def normalize_name(name: str) -> str:
     return "".join(ch for ch in name.lower() if ch.isalnum())
 
 
-def guess_xsd_for_xml(xml_path: Path, root_tag: str, xsd_by_name: dict) -> Path | None:
+def guess_xsd_for_xml(
+    xml_path: Path,
+    root_tag: str,
+    root_namespace: str,
+    xsd_by_name: dict,
+) -> Path | None:
+    # Special-case customer list snippet exports:
+    # - customer-lists/*.xml often use root <customer-list> in customer namespace
+    # - they must be validated with customerlist2.xsd (not customerlist.xsd).
+    if (
+        "customer-lists" in xml_path.parts
+        and root_tag == "customer-list"
+        and root_namespace == "http://www.demandware.com/xml/impex/customer/2006-10-31"
+    ):
+        customerlist2 = xsd_by_name.get(normalize_name("customerlist2"))
+        if customerlist2 is not None:
+            return customerlist2
+
     # Priority 1: match by filename stem
     stem_key = normalize_name(xml_path.stem)
     if stem_key in xsd_by_name:
@@ -55,12 +72,13 @@ def guess_xsd_for_xml(xml_path: Path, root_tag: str, xsd_by_name: dict) -> Path 
     return None
 
 
-def get_root_tag(xml_path: Path) -> str:
+def get_root_info(xml_path: Path) -> tuple[str, str]:
     tree = ET.parse(xml_path)
     root = tree.getroot()
     if "}" in root.tag:
-        return root.tag.split("}", 1)[1]
-    return root.tag
+        ns, local = root.tag[1:].split("}", 1)
+        return local, ns
+    return root.tag, ""
 
 
 def validate_xml_files(exports_dir: Path, schema_dir: Path) -> tuple[int, int]:
@@ -84,8 +102,13 @@ def validate_xml_files(exports_dir: Path, schema_dir: Path) -> tuple[int, int]:
 
     for xml_path in exports_dir.rglob("*.xml"):
         try:
-            root_tag = get_root_tag(xml_path)
-            xsd_path = guess_xsd_for_xml(xml_path, root_tag, xsd_by_name)
+            root_tag, root_namespace = get_root_info(xml_path)
+            xsd_path = guess_xsd_for_xml(
+                xml_path=xml_path,
+                root_tag=root_tag,
+                root_namespace=root_namespace,
+                xsd_by_name=xsd_by_name,
+            )
             if xsd_path is None:
                 # No matching schema: skip file (not counted as failure)
                 continue
@@ -146,7 +169,7 @@ def main() -> None:
     parser.add_argument(
         "--exportsDir",
         default=str(DEFAULT_EXPORTS_DIR),
-        help="Folder containing export folders to zip (default: ./outputs).",
+        help="Folder containing export folders to zip (default: ./#OUTPUTS).",
     )
     parser.add_argument(
         "--schemaDir",

@@ -8,8 +8,8 @@ import xml.etree.ElementTree as ET
 
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-DEFAULT_SITE_IMPORTS = os.path.join(REPO_ROOT, "inputs")
-DEFAULT_OUTPUT_FOLDER = os.path.join(REPO_ROOT, "outputs")
+DEFAULT_SITE_IMPORTS = os.path.join(REPO_ROOT, "#INPUTS")
+DEFAULT_OUTPUT_FOLDER = os.path.join(REPO_ROOT, "#OUTPUTS")
 
 
 def get_ns_prefix(root):
@@ -73,7 +73,7 @@ def tty_select_folder(site_imports_root):
     if not candidates:
         raise RuntimeError(f"No valid input folder found in: {site_imports_root}")
 
-    print("Select an input folder from inputs:\n")
+    print("Select an input folder from #INPUTS:\n")
     for idx, folder in enumerate(candidates, start=1):
         rel = os.path.relpath(folder, REPO_ROOT)
         print(f"{idx:>2}. {rel}")
@@ -255,13 +255,13 @@ def main():
         "--inputFolder",
         dest="input_folder",
         default=None,
-        help="Input folder containing a 'sites' directory. Default: TTY selection in ./inputs",
+        help="Input folder containing a 'sites' directory. Default: TTY selection in ./#INPUTS",
     )
     parser.add_argument(
         "--outputFolder",
         dest="output_folder",
         default=DEFAULT_OUTPUT_FOLDER,
-        help="Output folder where the generated text file will be written. Default: ./outputs",
+        help="Output folder where the generated text file will be written. Default: ./#OUTPUTS",
     )
     parser.add_argument(
         "--format",

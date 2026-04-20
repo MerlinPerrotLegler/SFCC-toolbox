@@ -4,7 +4,10 @@
   "requires": true,
   "packages": {},
   "scripts": {
-    "zip": "python3 export-zipper/zip-site-exports-for-sfcc.py",
-    "merge-slots": "python3 xml-slots/merge-numbered-slots.py inputs/PROD-camplaine-slots-catalog-storefront-mperrot/PROD-camplaine-slots-catalog-storefront-mperrot outputs/merged-numbered-slots"
+    "build": "python3 run-sfcc-toolbox.py build",
+    "import": "python3 01-import-for-sb/run-site-import-workflow.py",
+    "aliases": "python3 02-aliases-generation/generate-aliases-from-site-import.py",
+    "zip": "python3 99-export-zipper/package-site-exports.py",
+    "merge-slots": "python3 xml-slots/merge-numbered-slots.py \"#INPUTS/PROD-camplaine-slots-catalog-storefront-mperrot/PROD-camplaine-slots-catalog-storefront-mperrot\" \"#OUTPUTS/merged-numbered-slots\""
   }
 }

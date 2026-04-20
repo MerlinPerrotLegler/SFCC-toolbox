@@ -181,22 +181,39 @@ def configure_master_catalog_external_location(fichier, rel):
         if image_settings is None:
             image_settings = ET.SubElement(header, f'{prefix}image-settings')
 
+        modifie = False
+
+        internal_location = image_settings.find(f'{prefix}internal-location')
+        if internal_location is not None:
+            image_settings.remove(internal_location)
+            modifie = True
+
         external_location = image_settings.find(f'{prefix}external-location')
         if external_location is None:
-            external_location = ET.SubElement(image_settings, f'{prefix}external-location')
+            external_location = ET.Element(f'{prefix}external-location')
+            image_settings.insert(0, external_location)
+            modifie = True
+        else:
+            children = list(image_settings)
+            if children and children[0] is not external_location:
+                image_settings.remove(external_location)
+                image_settings.insert(0, external_location)
+                modifie = True
 
         http_url = external_location.find(f'{prefix}http-url')
         if http_url is None:
             http_url = ET.SubElement(external_location, f'{prefix}http-url')
+            modifie = True
 
         https_url = external_location.find(f'{prefix}https-url')
         if https_url is None:
             https_url = ET.SubElement(external_location, f'{prefix}https-url')
+            modifie = True
 
         new_http = _build_external_url(http_url.text, catalog_id, EXTERNAL_LOCATION_HTTP_FALLBACK)
         new_https = _build_external_url(https_url.text, catalog_id, EXTERNAL_LOCATION_HTTPS_FALLBACK)
 
-        if http_url.text == new_http and https_url.text == new_https:
+        if http_url.text == new_http and https_url.text == new_https and not modifie:
             print(f"⏭️  [catalog] external-location déjà conforme : {rel}")
             return
 
